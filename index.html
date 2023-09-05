@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header>Welcome to the Library</header>
+    <main>
+      <div class="add-a-book">
+        <button>Add a new book</button>
+      </div>
+      <div class="content">
+        <div class="list-of-books">
+          <!-- <div class="card">
+            <div class="details">
+              <p><strong>Title:</strong> Harry Potter</p>
+              <p><strong>Author</strong> J.K Rowling</p>
+              <p><strong>Pages</strong> 400</p>
+              <p><strong>Have you read it?</strong> Yes</p> 
+            </div>
+            <div class="buttons-book">
+              <button class="read-or-not-button">Read</button>
+              <button class="remove-button">Remove</button>
+            </div>
+          </div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div> -->
+        </div>
+          <dialog id="dialog">
+            <form>
+              <div>
+              <div><label for="title">Title*</label></div>
+              <input type="text" id="title" required>
+              </div>
+              <div>
+              <div><label for="author">Author*</label></div>
+              <input type="text" id="author" required>
+              </div>
+
+              <div>
+              <div><label for="pages">Number of pages*</label></div>
+              <input type="text" id="pages" required>
+              </div>
+
+              <div>
+
+              <!-- <div><label for="read-or-not">Have you read it?*</label></div>
+              <input type="input" id="read-or-not" placeholder="Enter either yes or no.." required>
+              </div> -->
+
+              <fieldset>
+                <legend>Have you read it?</legend>
+                <div>
+                <input type="radio" name="radio" value="yes" id="read-it">
+                <label for="read-it">Yes</label>
+                <input type="radio"  name="radio" value="no"   id="not-read" checked>
+                <label for="not-read">No</label>
+                </div>
+              </fieldset>
+              <div class="buttonsflex">
+                <button class="cancelbtn" id="cancelbtn">Cancel</button>
+                <button  id="submit" class="submitbtn">Submit</button>
+              </div>
+            </form>
+      </div>
+    </main>
+    <footer>
+      <a>
+        Copyright &copy; MAsecurity 2023
+      </a>
+      
+    
+    </footer>
+  </div>
+
+  
+</body>
+</html>
