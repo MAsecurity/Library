@@ -123,7 +123,32 @@ function addBookToLibrary() {
      
     });
 
-    removeButton.addEventListener("click", () => {  
+    removeButton.addEventListener("click", () => {
+      //Reduce all DOM elements with higher index than current index by 1 and then remove DOM element
+
+
+      currentIndex = removeButton.getAttribute("index");
+      allCards = document.querySelectorAll(".card");
+      allRemoveButtons = document.querySelectorAll(".remove-button");
+      let cardsIndexGreater = [];
+      let removeButtonsIndexGreater = [];
+      for(let i=0; i<myLibrary.length; i++){
+        if(currentIndex < i){
+          cardsIndexGreater.push(allCards[i].getAttribute("card-index"));
+          removeButtonsIndexGreater.push(allRemoveButtons[i].getAttribute("index"));
+
+        }
+      }
+
+      for (let indexValue of cardsIndexGreater){
+        allCards[indexValue].setAttribute("card-index", `${indexValue - 1}`);
+        allRemoveButtons[indexValue].setAttribute("index", `${indexValue - 1}`);
+
+      }
+
+      allCards[currentIndex].remove();
+      myLibrary.splice(currentIndex,currentIndex);
+
       
    
     
