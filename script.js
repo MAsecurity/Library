@@ -58,10 +58,9 @@ function addBookToLibrary() {
     
    });
 
-   function addToDisplay(titleValue, authorValue, pagesValue, readOrNotValue) {
+   function addToDisplay() {
     //Collect the current index relevant for creating an attribute
     let theIndex = myLibrary.length - 1;
-    console.log(myLibrary)
 
     //Create the DOM elements and its relevant classes and set the index attribute to the required elements
     let cardDiv = document.createElement('div');
@@ -71,13 +70,13 @@ function addBookToLibrary() {
     let detailsDiv = document.createElement('div');
     detailsDiv.classList.add("details");
     let pTitle = document.createElement('p');
-    pTitle.textContent = `Title: ${titleValue}`
+    pTitle.textContent = `Title: ${myLibrary[theIndex].title}`
     let pAuthor = document.createElement('p');
-    pAuthor.textContent = `Author: ${authorValue}`
+    pAuthor.textContent = `Author: ${myLibrary[theIndex].author}`
     let pPages = document.createElement('p');
-    pPages.textContent = `Pages: ${pagesValue}`;
+    pPages.textContent = `Pages: ${myLibrary[theIndex].pages}`;
     let pReadOrNot = document.createElement('p');
-    pReadOrNot.textContent = `Have you read it? ${readOrNotValue}`;
+    pReadOrNot.textContent = `Have you read it? ${myLibrary[theIndex].readOrNot}`;
     pReadOrNot.setAttribute("index", `${theIndex}`);
 
     let buttonsBookDiv = document.createElement('div');
@@ -85,9 +84,9 @@ function addBookToLibrary() {
     let readOrNotButton = document.createElement('button');
     readOrNotButton.classList.add('read-or-not-button');
     readOrNotButton.setAttribute("index", `${theIndex}`);
-    if(readOrNotValue === "yes") {
+    if(myLibrary[theIndex].readOrNot === "yes") {
       readOrNotButton.textContent = `Unread`;
-    }else if (readOrNotValue === "no") {
+    }else if (myLibrary[theIndex].readOrNot === "no") {
       readOrNotButton.textContent = `Read`;
     }
 
@@ -125,17 +124,13 @@ function addBookToLibrary() {
     });
 
     removeButton.addEventListener("click", () => {  
-    let currentIndex = removeButton.getAttribute("index");
-    if(currentIndex == cardDiv.getAttribute("card-index")){
-      cardDiv.remove();
-      myLibrary.splice(currentIndex,currentIndex);
-    }
-
-    console.log(myLibrary);
+      
+   
     
-
    });
+   
 }}
+
 
 addBookToLibrary();
 
