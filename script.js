@@ -62,6 +62,8 @@ function addBookToLibrary() {
     //Collect the current index relevant for creating an attribute
     let theIndex = myLibrary.length - 1;
 
+    console.log(myLibrary);
+
     //Create the DOM elements and its relevant classes and set the index attribute to the required elements
     let cardDiv = document.createElement('div');
     cardDiv.classList.add("card");
