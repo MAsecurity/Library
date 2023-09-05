@@ -11,7 +11,7 @@ const notRead = document.querySelector("#not-read");
 const listOfBooks = document.querySelector(".list-of-books");
 
 
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(title, author, pages, readOrNot) {
   this.title = title;
@@ -124,40 +124,24 @@ function addBookToLibrary() {
     });
 
     removeButton.addEventListener("click", () => {
-      //Reduce all DOM elements with higher index than current index by 1 and then remove DOM element
-
-
-      currentIndex = removeButton.getAttribute("index");
-      allCards = document.querySelectorAll(".card");
-      allRemoveButtons = document.querySelectorAll(".remove-button");
-      let cardsIndexGreater = [];
-      let removeButtonsIndexGreater = [];
-      for(let i=0; i<myLibrary.length; i++){
-        if(currentIndex < i){
-          cardsIndexGreater.push(allCards[i].getAttribute("card-index"));
-          removeButtonsIndexGreater.push(allRemoveButtons[i].getAttribute("index"));
-
-        }
+      //Reduce element if current index is a match
+      let allCards = document.querySelectorAll(".card");
+      let currentIndex = removeButton.getAttribute("index");
+      if(currentIndex == cardDiv.getAttribute("card-index")){
+        cardDiv.remove();
       }
-
-      for (let indexValue of cardsIndexGreater){
-        allCards[indexValue].setAttribute("card-index", `${indexValue - 1}`);
-        allRemoveButtons[indexValue].setAttribute("index", `${indexValue - 1}`);
-
+      //If all cards are removed update array and remove everything
+      if(allCards.length == 1){
+        myLibrary = [];
+        console.log(myLibrary);
       }
-
-      allCards[currentIndex].remove();
-      myLibrary.splice(currentIndex,currentIndex);
-
-      
-   
-    
    });
    
 }}
 
 
 addBookToLibrary();
+
 
 
 
