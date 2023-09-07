@@ -61,9 +61,6 @@ function addBookToLibrary() {
    function addToDisplay() {
     //Collect the current index relevant for creating an attribute
     let theIndex = myLibrary.length - 1;
-
-    console.log(myLibrary);
-
     //Create the DOM elements and its relevant classes and set the index attribute to the required elements
     let cardDiv = document.createElement('div');
     cardDiv.classList.add("card");
@@ -135,7 +132,6 @@ function addBookToLibrary() {
       //If all cards are removed update array and remove everything
       if(allCards.length == 1){
         myLibrary = [];
-        console.log(myLibrary);
       }
    });
    
