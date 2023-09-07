@@ -46,12 +46,12 @@ function addBookToLibrary() {
       if(readIt.checked) {
         newAddedBook = new Book(titleValue,authorValue,pagesValue,readItValue);
         myLibrary.push(newAddedBook);
-        addToDisplay(titleValue, authorValue,pagesValue,readItValue);
+        addToDisplay();
         
       }else if (notRead.checked) {
         newAddedBook = new Book(titleValue,authorValue,pagesValue,notReadValue);
         myLibrary.push(newAddedBook);
-        addToDisplay(titleValue, authorValue, pagesValue, notReadValue);
+        addToDisplay();
   
       }
     };
