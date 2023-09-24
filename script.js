@@ -13,11 +13,13 @@ const listOfBooks = document.querySelector(".list-of-books");
 
 let myLibrary = [];
 
-function Book(title, author, pages, readOrNot) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readOrNot = readOrNot;
+class Book {
+  constructor(title, author, pages, readOrNot){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readOrNot = readOrNot;
+  }
   
 }
 
@@ -123,7 +125,7 @@ function addBookToLibrary() {
     });
 
     removeButton.addEventListener("click", () => {
-      //Reduce element if current index is a match
+      //Remove element if current index is a match
       let allCards = document.querySelectorAll(".card");
       let currentIndex = removeButton.getAttribute("index");
       if(currentIndex == cardDiv.getAttribute("card-index")){
