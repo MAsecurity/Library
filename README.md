@@ -7,6 +7,7 @@ reading status of the book. This project was built using HTML, CSS and JavaScrip
 <img src="./images/Library.png" width="700px" height="auto">
 
 ## What i learned
+- Dialog elements
 - Classes
 - Objects and constructors
 - DOM manipulation
