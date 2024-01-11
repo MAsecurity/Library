@@ -25,6 +25,33 @@
         <div class="add-book"> <div>+</div></div>
       </div>
     </div>
+    <dialog id="dialog">
+      <form>
+        <div class="title">Enter book details</div>
+        <div class="fields">
+          <div class="title-field">
+            <label for="title">Title <span>*</span></label>
+            <input type="text" id="title" required>
+          </div>
+          <div class="author-field">
+            <label for="author">Author <span>*</span></label>
+            <input type="text" id="author" required>
+          </div>
+          <div class="pages-field">
+            <label for="pages">Pages <span>*</span></label>
+            <input type="number" id="pages" min="0" required>
+          </div>
+          <div class="pages-read-field">
+            <label for="read">Number of pages read <span>*</span></label>
+            <input type="number" id="read" min="0" required>
+          </div>
+        </div>
+        <div class="buttons-flex">
+          <button class="cancel">Cancel</button>
+          <button class="create">Create</button>
+        </div>
+      </form>
+    </dialog>
   </main>
   <footer><div><a href="https://github.com/MAsecurity" target="_blank">Created by MAsecurity</a></div></footer>
 </body>

@@ -9,13 +9,13 @@ class Book{
   }
 }
 
-function addBookToLibrary() {
+(function addBookToLibrary() {
   // do stuff here
-  const addBookClick = document.querySelector(".add-book");
-  addBookClick.onclick = () =>{
-    renderDialog()
-  }
+  const addBookClick = document.querySelector(".add-book div");
+  addBookClick.onclick =  renderDialog;
   function renderDialog(){
+    const dialog = document.querySelector("#dialog")
+    dialog.showModal()
 
   }
-}
+})()
