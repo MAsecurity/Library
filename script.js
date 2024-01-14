@@ -1,7 +1,7 @@
 const myLibrary = [];
 
 class Book{
-  constructor(title, author,pages,readPages){
+  constructor(title,author,pages,readPages){
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -11,6 +11,28 @@ class Book{
   getTitle(){
     return this.title;
   }
+  getAuthor(){
+    return this.author
+  }
+  getPages(){
+    return this.pages;
+  }
+  getReadPages(){
+    return this.readPages;
+  }
+  setTitle(title){
+    this.title = title;
+  }
+  setAuthor(author){
+    this.author = author;
+  }
+  setPages(pages){
+    this.pages = pages;
+  }
+  setReadPages(readPages){
+    this.readPages = readPages;
+  }
+
 }
 
 (function addBookToLibrary() {
@@ -63,10 +85,14 @@ class Book{
     buttonSubmit.addEventListener("click", () => {
       event.preventDefault();
       if (titleElement.value != '' && authorElement != '' && pagesElement.value >= 0 && readPagesElement.value >=0 && pagesElement.value != '' && readPagesElement != ''){
-        if (readPagesElement.value <= pagesElement.value){
+        if (parseInt(readPagesElement.value) <= parseInt(pagesElement.value)){
           let newObj = new Book(titleElement.value, authorElement.value, pagesElement.value, readPagesElement.value);
+          myLibrary.push(newObj);
           resetDialog()
           dialog.close();
+          addBook()
+        }else{
+          dialog.showModal();
         }
 
       }
@@ -75,6 +101,28 @@ class Book{
       event.preventDefault();
       dialog.close()
     })
+  }
+  function addBook(){
+    myLibrary.forEach((element,index) => {
+      renderBookDOM(element, index);
+    });
+  }
+  function renderBookDOM(element,index){
+    const booksContainer = document.querySelector(".books");
+    const newBook = document.createElement("div");
+    const titleEl = document.createElement("div");
+    const authorEl = document.createElement("div");
+    const pagesEl = document.createElement("div");
+    newBook.classList.add("new-book");
+    titleEl.textContent = `${element.getTitle()}`;
+    titleEl.style.cssText = "font-size:20px; font-weight:bold; text-decoration: underline;"
+    authorEl.textContent = `By ${element.getAuthor()}`;
+    authorEl.style.cssText = "font-size:15px;";
+    pagesEl.textContent = `${element.getPages()} pages`;
+    booksContainer.appendChild(newBook);
+    newBook.appendChild(titleEl);
+    newBook.appendChild(authorEl);
+    newBook.appendChild(pagesEl);
   }
   function resetDialog(){
     const titleElement = document.querySelector("#title");
