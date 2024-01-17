@@ -154,9 +154,9 @@ class Book{
     titleEl.textContent = `${element.getTitle()}`;
     titleEl.style.cssText = "font-size:20px; font-weight:bold; text-decoration: underline; text-align: center;"
     authorEl.textContent = `By ${element.getAuthor()}`;
-    authorEl.style.cssText = "text-align: center; font-size: 16px;"
+    authorEl.style.cssText = "text-align: center; font-size: 16px !important;"
     pagesEl.textContent = `${element.getPages()} pages`;
-    pagesEl.style.cssText = "text-align: center; font-size: 16px";
+    pagesEl.style.cssText = "text-align: center; font-size: 16px !important;";
     buttonsContainer.classList.add("buttons-container");
     buttonEditProgress.classList.add("edit-progress");
     buttonEditProgress.textContent = "Edit progress";
