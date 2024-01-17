@@ -110,7 +110,7 @@ main{
 dialog::backdrop {
   backdrop-filter: blur(8px);
 }
-.update-dialog{
+#update-dialog{
   width: 300px;
   height: 300px;
   position: absolute;
@@ -140,11 +140,13 @@ form{
 }
 .update-pages-read-field{
   margin-top: 20px;
-  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
 }
 .update-pages-read-field label{
   font-size:20px;
-  grid-column-start: 2;
   font-weight: bold;
 }
 .pages-read-field div, .update-pages-read-field div{
@@ -152,11 +154,12 @@ form{
   background-color: #172554;
 }
 .padding{
-  height: 30px;
+  min-height: 30px;
   padding: 5px 5px;
   font-size: 15px;
   color: white;
   font-weight: bold;
+  word-break: break-all;
 }
 
 input[type=text], input[type=number]{
@@ -175,7 +178,7 @@ input[type=text]:focus, input[type=number]:focus{
 input:invalid{
   border: 3px solid red;
 }
-.buttons-flex{
+.buttons-flex, .update-buttons-flex{
   margin-top: 10px;
   display: flex;
   justify-content: center;
@@ -186,7 +189,11 @@ input:invalid{
   width: 100px;
   height: 40px;
 }
-.buttons-flex .create{
+.update-buttons-flex button{
+  width: 100px;
+  height: 40px;
+}
+.buttons-flex .create, .update-buttons-flex .updateBtn{
   background-color: #172554;
   color: white;
   font-weight: bold;
@@ -196,7 +203,7 @@ input:invalid{
   border-radius: 3px;
   cursor: pointer;
 }
-.buttons-flex .cancel{
+.buttons-flex .cancel, .update-buttons-flex .closeBtn{
   background-color: black;
   color: white;
   font-weight: bold;
@@ -206,14 +213,14 @@ input:invalid{
   border-radius: 3px;
   cursor: pointer;
 }
-.buttons-flex .create:hover{
+.buttons-flex .create:hover ,.update-buttons-flex .updateBtn:hover{
   background-color: white;
   color: #172554;
   opacity: 0.7;
   border: 3px solid #172554;
   border-radius: 3px;
 }
-.buttons-flex .cancel:hover{
+.buttons-flex .cancel:hover, .update-buttons-flex .closeBtn:hover{
   background-color: white;
   color: black;
   opacity: 0.7;

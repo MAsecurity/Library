@@ -61,20 +61,15 @@ class Book{
     const pagesElement = document.querySelector("#pages");
     const readPagesElement = document.querySelector("#read");
     const warningEL = document.querySelector(".pages-read-field div");
-    let zeroFirstCheckOne = [];
     pagesElement.addEventListener("input", () => {
-      currentPageValue = pagesElement.value
-      zeroFirstCheckOne=[];
-      zeroFirstCheckOne = pagesElement.value.split("");
+      let zeroFirstCheckOne = pagesElement.value.split("");
       if (zeroFirstCheckOne[0] == 0 && zeroFirstCheckOne.length > 1){
         pagesElement.value = 0;
       }
       readingValidations(readPagesElement.value, pagesElement.value)
     })
-    let zeroFirstCheckTwo = [];
     readPagesElement.addEventListener("input",()=>{
-      zeroFirstCheckTwo = [];
-      zeroFirstCheckTwo = readPagesElement.value.split("");
+      let zeroFirstCheckTwo = readPagesElement.value.split("");
       if (zeroFirstCheckTwo[0] == 0 && zeroFirstCheckTwo.length > 1){
         readPagesElement.value = 0;
       }
@@ -115,6 +110,29 @@ class Book{
     myLibrary.forEach((element,index) => {
       renderBookDOM(element, index);
     });
+    updateStatus()
+  }
+  function updateStatus(){
+    const booksFinished = document.querySelector(".books-finished span");
+    const booksNotRead = document.querySelector(".books-not-read span");
+    const booksInProgress = document.querySelector(".books-in-progress span")
+    let booksFinishedCount = 0;
+    let booksNotReadCount =0;
+    let booksInProgressCount = 0;
+    myLibrary.forEach(element => {
+      if (element.getReadPages() == element.getPages()){
+        booksFinishedCount++;
+      }
+      if(element.getReadPages() == 0){
+        booksNotReadCount++;
+      }
+      if((element.getReadPages() > 0) && (element.getReadPages() < element.getPages())){
+        booksInProgressCount++;
+      }
+    })
+    booksFinished.textContent = `${booksFinishedCount}`;
+    booksInProgress.textContent = `${booksInProgressCount}`;
+    booksNotRead.textContent = `${booksNotReadCount}`;
   }
   function renderBookDOM(element,index){
     const booksContainer = document.querySelector(".books");
@@ -164,7 +182,7 @@ class Book{
   }
   function renderUpdateDialog(index){
     const updateDialog = document.createElement("dialog");
-    updateDialog.classList.add("update-dialog");
+    updateDialog.setAttribute("id","update-dialog");
     const formEL = document.createElement("form");
     const titleElDiv = document.createElement("div");
     titleElDiv.textContent = `Update number of read pages for ${myLibrary[index].getTitle()}`
@@ -177,18 +195,64 @@ class Book{
     const updateInput = document.createElement("input");
     Object.assign(updateInput,{
       type: "number",
+      id: "update-read",
       value: `${myLibrary[index].getReadPages()}`,
       required: "required"
     });
-    cont
+    const validationDIV = document.createElement("div");
+    let bookPages = myLibrary[index].getPages();
+    updateInput.oninput = () =>{
+      let zeroCheck = updateInput.value.split("");
+      if(parseInt(zeroCheck[0]) == 0 && zeroCheck.length > 1){
+        updateInput.value = 0;
+      }
+      if(parseInt(updateInput.value) > parseInt(bookPages)){
+        validationDIV.textContent = "The number of read pages cannot exceed the book.";
+        validationDIV.classList.add("padding")
+      }else{
+        validationDIV.classList.remove("padding");
+        validationDIV.textContent = "";
+      }
+    }
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("update-buttons-flex");
+    const updateBtn = document.createElement("button");
+    updateBtn.classList.add("updateBtn");
+    updateBtn.textContent = "Update";
+    const cancelBtn = document.createElement("button");
+    cancelBtn.classList.add("closeBtn")
+    cancelBtn.textContent = "Cancel";
+
     document.body.appendChild(updateDialog);
     updateDialog.appendChild(formEL);
     formEL.appendChild(titleElDiv);
     formEL.appendChild(updateInputContainer);
     updateInputContainer.appendChild(labelEL);
     updateInputContainer.appendChild(updateInput)
+    updateInputContainer.appendChild(validationDIV);
+    formEL.appendChild(buttonContainer);
+    buttonContainer.appendChild(cancelBtn);
+    buttonContainer.appendChild(updateBtn);
     updateDialog.showModal()
+    updateBtn.onclick = () => {
+      event.preventDefault()
+      if (updateInput.value >= 0 && updateInput.value <= myLibrary[index].getPages()){
+        myLibrary[index].setReadPages(updateInput.value);
+        addBook()
+        updateDialog.close();
+        clearUpdateDialog()
 
+      }
+    }
+    cancelBtn.onclick = () => {
+      event.preventDefault()
+      updateDialog.close()
+      updateDialog.remove()
+    }
+  }
+  function clearUpdateDialog(){
+    const theUpdateDialog = document.querySelector("#update-dialog");
+    theUpdateDialog.remove();
   }
   function removeBook(index){
     myLibrary.splice(index,1);
